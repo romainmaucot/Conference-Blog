@@ -1,0 +1,21 @@
+App\Entity\User:
+  user{1..250}:
+    firstname: <firstName()>
+    lastname: <lastName()>
+    mail: <email()>
+    password: <sha256(randomNumber(8))>
+    created_at: <dateTimeBetween('-5 years','now', 'Europe/Paris')>
+
+App\Entity\Conference:
+  conference{1..40}:
+    title: <catchPhrase()>
+    description: <bs()>
+    img: img.jpg
+    event_date: <dateTimeBetween('-5 years', 'now', 'Europe/Paris')>
+
+App\Entity\Rating:
+  rating_{1..500}:
+    conferenceId: '@conference<numberBetween(1, 30)>'
+    userId: '@user<numberBetween(1, 250)>'
+    rate: <numberBetween(1, 5)>
+
