@@ -8,16 +8,18 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Mail</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
-                <th>Created at</th>
-                <th>Actions</th>
+                <th>Created_at</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
+                <td>{{ user.id }}</td>
                 <td>{{ user.mail }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
@@ -29,7 +31,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

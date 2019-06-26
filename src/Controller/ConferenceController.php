@@ -5,28 +5,42 @@ namespace App\Controller;
 use App\Entity\Conference;
 use App\Form\ConferenceType;
 use App\Repository\ConferenceRepository;
+use App\Repository\RatingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\RatingService;
 
 /**
- * @Route("/conference")
+ * @Route("/")
  */
 class ConferenceController extends AbstractController
 {
+
     /**
-     * @Route("/", name="conference_index", methods={"GET"})
+     * @Route("homepage", name="homepage", methods={"GET"})
      */
-    public function index(ConferenceRepository $conferenceRepository): Response
+    public function homepage(ConferenceRepository $conferenceRepository): Response
     {
+        return $this->render('conference/homepage.html.twig', [
+            'conferences' => $conferenceRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("admin/conference", name="conference_index", methods={"GET"})
+     */
+    public function index(ConferenceRepository $conferenceRepository, RatingService $ratingService, RatingRepository $ratingRepository): Response
+    {
+
         return $this->render('conference/index.html.twig', [
             'conferences' => $conferenceRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="conference_new", methods={"GET","POST"})
+     * @Route("admin/conference/new", name="conference_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,7 +63,7 @@ class ConferenceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="conference_show", methods={"GET"})
+     * @Route("admin/conference/{id}", name="conference_show", methods={"GET"})
      */
     public function show(Conference $conference): Response
     {
@@ -59,7 +73,7 @@ class ConferenceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="conference_edit", methods={"GET","POST"})
+     * @Route("admin/conference/{id}/edit", name="conference_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Conference $conference): Response
     {
@@ -81,7 +95,7 @@ class ConferenceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="conference_delete", methods={"DELETE"})
+     * @Route("admin/conference/{id}", name="conference_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Conference $conference): Response
     {

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conference index{% endblock %}
+
+{% block body %}
+    <h1>Conference index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Event date</th>
+            <th>City</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for conference in conferences %}
+            <tr>
+                <td width="20%"><img src="images/{{ conference.img }}" width="100%"></td>
+                <td>{{ conference.title }}</td>
+                <td>{{ conference.description }}</td>
+                <td>{{ conference.eventDate ? conference.eventDate|date('m d Y H:i') : '' }}</td>
+                <td>{{ conference.city }}</td>
+                <td>{{ conference.address }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

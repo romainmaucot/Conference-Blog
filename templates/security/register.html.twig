@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign in{% endblock %}
+
+{% block body %}
+    <h1>Sign in</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.firstname) }}
+        {{ form_row(registrationForm.lastname) }}
+    	{{ form_row(registrationForm.mail) }}
+        {{ form_row(registrationForm.plainPassword) }}
+
+        <button class="btn">Sign in</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

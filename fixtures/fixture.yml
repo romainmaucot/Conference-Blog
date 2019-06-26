@@ -1,4 +1,19 @@
 App\Entity\User:
+  admin:
+    firstname: <firstName()>
+    lastname: <lastName()>
+    mail: 'root@root.com'
+    roles: ["ROLE_ADMIN"]
+    password: '\$2y\$10\$SQ0a9AipFGnpSXS/iRa8nu8ysp0IzkTs4dHkYs8Qpxo0EM2sm8TWy'
+    created_at: <dateTimeBetween('-5 years','now', 'Europe/Paris')>
+
+  usertest:
+    firstname: <firstName()>
+    lastname: <lastName()>
+    mail: 'user@user.com'
+    password: '\$2y\$10\$t4u07l4Ffh3VLXEg8XykGOIOMdIPBQSzQkgNGVOv2NExGDH2HEIMK'
+    created_at: <dateTimeBetween('-5 years','now', 'Europe/Paris')>
+
   user{1..250}:
     firstname: <firstName()>
     lastname: <lastName()>
@@ -10,8 +25,11 @@ App\Entity\Conference:
   conference{1..40}:
     title: <catchPhrase()>
     description: <bs()>
-    img: img.jpg
+    img: 'conf<numberBetween(1, 7)>.jpg'
     event_date: <dateTimeBetween('-5 years', 'now', 'Europe/Paris')>
+    city: <city()>
+    address: <address()>
+
 
 App\Entity\Rating:
   rating_{1..500}:

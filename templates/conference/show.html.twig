@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ conference.id }}</td>
-            </tr>
-            <tr>
                 <th>Title</th>
                 <td>{{ conference.title }}</td>
             </tr>
@@ -20,12 +16,20 @@
                 <td>{{ conference.description }}</td>
             </tr>
             <tr>
-                <th>Img</th>
-                <td>{{ conference.img }}</td>
-            </tr>
             <tr>
                 <th>Event_date</th>
                 <td>{{ conference.eventDate ? conference.eventDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ conference.city }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ conference.address }}</td>
+            </tr>
+                <th>Img</th>
+                <td><img src="../images/{{ conference.img }}" width="30%"></td>
             </tr>
         </tbody>
     </table>
