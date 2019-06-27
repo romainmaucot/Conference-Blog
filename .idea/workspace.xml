@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b5518763-4b1d-4afc-ba51-3ce1e51cbb5b" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/config/packages/knp_paginator.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/translation.yaml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/templates/user/rated.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/translations/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Conference-Blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Conference-Blog.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -24,7 +26,7 @@
       <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190625140623.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190625141128.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190625164509.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190626074015.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190626074015.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20190627123608.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190626080516.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/ConferenceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ConferenceRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/RatingRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RatingRepository.php" afterDir="false" />
@@ -78,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/config/packages/knp_paginator.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+              <caret line="8" column="78" selection-start-line="8" selection-start-column="78" selection-end-line="8" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -347,16 +349,15 @@
       <option name="presentableId" value="Default" />
       <updated>1561458254124</updated>
       <workItem from="1561458255644" duration="33372000" />
-      <workItem from="1561620341022" duration="13342000" />
+      <workItem from="1561620341022" duration="13464000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46714000" />
+    <option name="totallyTimeSpent" value="46836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -650,7 +651,7 @@
     <entry file="file://$PROJECT_DIR$/config/packages/knp_paginator.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+          <caret line="8" column="78" selection-start-line="8" selection-start-column="78" selection-end-line="8" selection-end-column="78" />
         </state>
       </provider>
     </entry>
