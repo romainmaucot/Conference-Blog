@@ -19,6 +19,29 @@ class RatingRepository extends ServiceEntityRepository
         parent::__construct($registry, Rating::class);
     }
 
+    public function getRatedByUserId(Int $id){
+
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.conferenceId', 'c')
+            ->addSelect('c')
+            ->andWhere('r.userId = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function getAverageConference(){
+
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.conferenceId', 'c')
+            ->addSelect('c')
+            ->addSelect('count(r.conferenceId)')
+            ->addSelect( 'SUM(r.rate)')
+            ->groupBy('r.conferenceId')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Rating[] Returns an array of Rating objects
     //  */

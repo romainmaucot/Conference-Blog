@@ -37,3 +37,15 @@ App\Entity\Rating:
     userId: '@user<numberBetween(1, 250)>'
     rate: <numberBetween(1, 5)>
 
+  ratingroot_{1..50}:
+    conferenceId: '@conference<numberBetween(1, 30)>'
+    userId: '@admin'
+    rate: <numberBetween(1, 5)>
+
+  ratingusertest_{1..50}:
+    conferenceId: '@conference<numberBetween(1, 30)>'
+    userId: '@usertest'
+    rate: <numberBetween(1, 5)>
+
+
+

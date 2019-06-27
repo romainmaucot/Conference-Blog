@@ -18,17 +18,11 @@
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for rate in rates %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.mail }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                </td>
+                <td>{{ rate.id }}</td>
+                <td>{{ rate.rate }}</td>
+
             </tr>
         {% else %}
             <tr>

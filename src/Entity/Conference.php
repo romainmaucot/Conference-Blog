@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ConferenceRepository")
@@ -45,6 +47,37 @@ class Conference
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="conferenceId")
+     */
+    private $ratings;
+
+    public function __construct()
+    {
+        $this->ratings = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Rating[]
+     */
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    /**
+     * @param Rating $ratings
+     * @return Conference
+     */
+    public function addRating(Rating $ratings): self
+    {
+        if (!$this->$ratings->contains($ratings)) {
+            $this->$ratings[] = $ratings;
+        }
+
+        return $this;
+    }
 
     public function getId(): ?int
     {

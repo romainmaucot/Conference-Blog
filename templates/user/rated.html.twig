@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conferences rated{% endblock %}
+
+{% block body %}
+    <h1>Conferences rated</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Event Date</th>
+            <th>Rate</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rate in rated %}
+
+            <tr>
+                <td width="20%"><img src="images/{{ rate.conferenceId.img }}" width="100%"></td>
+                <td>{{ rate.conferenceId.title }}</td>
+                <td>{{ rate.conferenceId.eventDate ? rate.conferenceId.eventDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ rate .rate }}</td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
