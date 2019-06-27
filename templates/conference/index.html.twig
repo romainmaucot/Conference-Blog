@@ -14,27 +14,33 @@
                 <th>Event date</th>
                 <th>City</th>
                 <th>Address</th>
+                <th>Average</th>
+                <th>Number rates</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for conference in conferences %}
+
+        {% for conference in conferences  %}
             <tr>
-                <td width="20%"><img src="../images/{{ conference.img }}" width="100%"></td>
-                <td>{{ conference.title }}</td>
-                <td>{{ conference.description }}</td>
-                <td>{{ conference.eventDate ? conference.eventDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ conference.city }}</td>
-                <td>{{ conference.address }}</td>
+                <td width="15%"><img src="../images/{{ conference.0.conferenceId.img }}" width="100%"></td>
+                <td>{{ conference.0.conferenceId.title }}</td>
+                <td>{{ conference.0.conferenceId.description }}</td>
+                <td>{{ conference.0.conferenceId.eventDate ? conference.0.conferenceId.eventDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ conference.0.conferenceId.city }}</td>
+                <td>{{ conference.0.conferenceId.address }}</td>
+                <td>{{ (conference.2 / conference.1)|number_format(1) }} / 5</td>
+                <td>{{ conference.1 }} rates</td>
                 <td>
-                    <a href="{{ path('conference_show', {'id': conference.id}) }}">show</a>
-                    <a href="{{ path('conference_edit', {'id': conference.id}) }}">edit</a>
+                    <a href="{{ path('conference_show', {'id': conference.0.conferenceId.id}) }}">show</a>
+                    <a href="{{ path('conference_edit', {'id': conference.0.conferenceId.id}) }}">edit</a>
                 </td>
+
             </tr>
         {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>

@@ -19,11 +19,11 @@ class StatisticController extends AbstractController
     /**
      * @Route("/", name="statistic_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository, ConferenceRepository $conferenceRepository, RatingRepository $ratingRepository): Response
+    public function index(RatingRepository $ratingRepository): Response
     {
 
         return $this->render('statistic/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'rates' => $ratingRepository->getAverageConference(),
         ]);
     }
 }
