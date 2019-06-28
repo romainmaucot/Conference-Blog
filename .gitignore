@@ -2,6 +2,7 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+/.idea
 
 # Cache and logs (Symfony2)
 /app/cache/*
@@ -51,3 +52,6 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+.idea
+.idea
+.idea
