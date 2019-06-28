@@ -1,7 +1,7 @@
 App\Entity\User:
   admin:
-    firstname: <firstName()>
-    lastname: <lastName()>
+    firstname: 'Admin'
+    lastname: 'Admin'
     mail: 'root@root.com'
     roles: ["ROLE_ADMIN"]
     password: '\$2y\$10\$SQ0a9AipFGnpSXS/iRa8nu8ysp0IzkTs4dHkYs8Qpxo0EM2sm8TWy'

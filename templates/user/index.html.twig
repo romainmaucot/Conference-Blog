@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>User index</h1>
-
+    <a href="{{ path('user_new') }}"><button>Create new</button></a>
     <table class="table">
         <thead>
             <tr>
@@ -25,8 +25,8 @@
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('user_show', {'id': user.id}) }}"><button>show</button></a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}"><button>edit</button></a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+
 {% endblock %}

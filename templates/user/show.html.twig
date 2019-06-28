@@ -3,7 +3,12 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>User {{ user.firstname }}</h1>
+    {% for av in average %}
+        <h3> Voted {{ av.1 }} times for an average of {{ (av.2 / av.1)|number_format(1) }} / 5</h3>
+    {% endfor %}
+
+    <a href="{{ path('user_index') }}"><button>back to list</button></a>
 
     <table class="table">
         <tbody>
@@ -26,9 +31,29 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+    <a href="{{ path('user_edit', {'id': user.id}) }}"><button>edit</button></a>
 
     {{ include('user/_delete_form.html.twig') }}
+
+    <h2>Rating History</h2>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Rate</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for conference in conferences %}
+            <tr>
+                <td width="20%"><img src="../../images/{{ conference.conferenceId.img }}" width="100%"></td>
+                <td>{{ conference.conferenceId.title }}</td>
+                <td>{{ conference.rate }} / 5</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

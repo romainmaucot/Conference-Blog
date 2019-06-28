@@ -79,10 +79,12 @@ class ConferenceController extends AbstractController
     /**
      * @Route("admin/conference/{id}", name="conference_show", methods={"GET"})
      */
-    public function show(Conference $conference): Response
+    public function show(Conference $conference, Request $request, RatingRepository $ratingRepository): Response
     {
+
         return $this->render('conference/show.html.twig', [
             'conference' => $conference,
+            'users' => $ratingRepository->getConferenceUsers($conference->getId()),
         ]);
     }
 

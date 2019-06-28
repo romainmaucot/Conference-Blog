@@ -54,9 +54,10 @@ class UserController extends AbstractController
      */
     public function show(User $user, RatingRepository $ratingRepository): Response
     {
-        //var_dump($ratingRepository->findById($user->getId()));
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'conferences' => $ratingRepository->getRatedByUserIdAdmin($user->getId()),
+            'average' => $ratingRepository->getAverageByUserIdAdmin($user->getId()),
         ]);
     }
 
