@@ -6,6 +6,8 @@ use App\Entity\Conference;
 use App\Form\ConferenceType;
 use App\Repository\ConferenceRepository;
 use App\Repository\RatingRepository;
+use App\Form\RatingType;
+use App\Entity\Rating;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -46,10 +48,10 @@ class ConferenceController extends AbstractController
     /**
      * @Route("admin/conference", name="conference_index", methods={"GET"})
      */
-    public function index(ConferenceRepository $conferenceRepository, RatingRepository $ratingRepository): Response
+    public function index(ConferenceRepository $conferenceRepository): Response
     {
         return $this->render('conference/index.html.twig', [
-            'conferences' => $ratingRepository->getAverageConference(),
+            'conferences' => $conferenceRepository->findAll(),
         ]);
     }
 
@@ -63,6 +65,18 @@ class ConferenceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $request->files->get('conference')['img'] ;
+            $uploads_directory = $this->getParameter('uploads_directory');
+            $filename = md5(uniqid()) . '.' .  $file->guessExtension();
+
+            $file->move(
+                $uploads_directory,
+                $filename
+            );
+
+            $conference->setImg($filename);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($conference);
             $entityManager->flush();
@@ -81,10 +95,41 @@ class ConferenceController extends AbstractController
      */
     public function show(Conference $conference, Request $request, RatingRepository $ratingRepository): Response
     {
-
         return $this->render('conference/show.html.twig', [
             'conference' => $conference,
             'users' => $ratingRepository->getConferenceUsers($conference->getId()),
+            'average' => $ratingRepository->getAverageByConferenceIdAdmin($conference->getId()),
+        ]);
+    }
+
+    /**
+     * @Route("conference/{id}", name="conference_show_user", methods={"GET","POST"})
+     */
+    public function showUser(Conference $conference, Request $request, RatingRepository $ratingRepository): Response
+    {
+        $rating = new Rating();
+        $form = $this->createForm(RatingType::class, $rating);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $rating->setConferenceId($conference);
+            $rating ->setUserId($this->getUser());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($rating);
+            $entityManager->flush();
+            return $this->redirectToRoute('conference_show_user', [
+                'id' => $conference->getId(),
+
+            ]);
+        }
+
+        return $this->render('conference/showUser.html.twig', [
+            'conference' => $conference,
+            'users' => $ratingRepository->getConferenceUsers($conference->getId()),
+            'average' => $ratingRepository->getAverageByConferenceIdAdmin($conference->getId()),
+            'form' => $form->createView(),
         ]);
     }
 

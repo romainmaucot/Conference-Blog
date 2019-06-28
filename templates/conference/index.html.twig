@@ -5,8 +5,8 @@
 {% block body %}
     <h1>Conference index</h1>
 
-    <a href="{{ path('conference_new') }}" class="btn-group-lg"> <button>Create new </button></a>
-
+    <a href="{{ path('conference_new') }}" class="btn-group-lg"> <button>Create new</button></a>
+    <h6>There is {{ conferences|length }} conferences</h6>
     <table class="table">
         <thead>
             <tr>
@@ -16,8 +16,6 @@
                 <th>Event date</th>
                 <th>City</th>
                 <th>Address</th>
-                <th>Average</th>
-                <th>Number rates</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,17 +23,15 @@
 
         {% for conference in conferences  %}
             <tr>
-                <td width="15%"><img src="../images/{{ conference.0.conferenceId.img }}" width="100%"></td>
-                <td>{{ conference.0.conferenceId.title }}</td>
-                <td>{{ conference.0.conferenceId.description }}</td>
-                <td>{{ conference.0.conferenceId.eventDate ? conference.0.conferenceId.eventDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ conference.0.conferenceId.city }}</td>
-                <td>{{ conference.0.conferenceId.address }}</td>
-                <td>{{ (conference.2 / conference.1)|number_format(1) }} / 5</td>
-                <td>{{ conference.1 }} rates</td>
+                <td width="15%"><img src="../images/{{ conference.img }}" width="100%"></td>
+                <td>{{ conference.title }}</td>
+                <td>{{ conference.description }}</td>
+                <td>{{ conference.eventDate ? conference.eventDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ conference.city }}</td>
+                <td>{{ conference.address }}</td>
                 <td>
-                    <a href="{{ path('conference_show', {'id': conference.0.conferenceId.id}) }}"><button>show</button></a>
-                    <a href="{{ path('conference_edit', {'id': conference.0.conferenceId.id}) }}"><button>edit </button></a>
+                    <a href="{{ path('conference_show', {'id': conference.id}) }}"><button>show</button></a>
+                    <a href="{{ path('conference_edit', {'id': conference.id}) }}"><button>edit </button></a>
                 </td>
 
             </tr>

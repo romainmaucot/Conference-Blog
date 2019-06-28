@@ -43,6 +43,37 @@ class RatingRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getTopAverageConference(){
+
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.conferenceId', 'c')
+            ->addSelect('c')
+            ->addSelect('count(r.conferenceId)')
+            ->addSelect( 'SUM(r.rate)')
+            ->groupBy('r.conferenceId')
+            ->orderBy('count(r.conferenceId)', 'DESC')
+            ->orderBy('AVG(r.rate)', 'DESC')
+            ->setMaxResults(10)
+            ->setFirstResult(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getTopAverageUser(){
+
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.conferenceId', 'c')
+            ->addSelect('count(r.userId)')
+            ->addSelect( 'SUM(r.rate)')
+            ->groupBy('r.userId')
+            ->orderBy('count(r.userId)', 'DESC')
+            ->orderBy('AVG(r.rate)', 'DESC')
+            ->setMaxResults(10)
+            ->setFirstResult(10)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getConferenceUsers($id){
 
         return $this->createQueryBuilder('r')
@@ -73,6 +104,17 @@ class RatingRepository extends ServiceEntityRepository
             ->addSelect('count(r.conferenceId)')
             ->addSelect( 'SUM(r.rate)')
             ->andWhere('r.userId = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAverageByConferenceIdAdmin(Int $id){
+
+        return $this->createQueryBuilder('r')
+            ->addSelect('count(r.userId)')
+            ->addSelect( 'SUM(r.rate)')
+            ->andWhere('r.conferenceId = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();

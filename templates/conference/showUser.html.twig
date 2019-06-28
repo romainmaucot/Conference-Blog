@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ conference.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ conference.title }}</h1>
+    {% for av in average %}
+        {% if av.2 is not null %}
+            <h3> Voted {{ av.1 }} times for an average of {{ (av.2 / av.1)|number_format(1) }} / 5</h3>
+        {% endif %}
+    {% endfor %}
+
+    <a href="{{ path('conference_index') }}"><button>back to list</button></a>
+
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Description</th>
+            <td>{{ conference.description }}</td>
+        </tr>
+        <tr>
+        <tr>
+            <th>Event_date</th>
+            <td>{{ conference.eventDate ? conference.eventDate|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ conference.city }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ conference.address }}</td>
+        </tr>
+        <th>Img</th>
+        <td><img src="/images/{{ conference.img }}" width="30%"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    {% if app.user %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+    {% else %}
+        For rating <a href="{{ path('app_register') }}">Sign up</a> or <a href="{{ path('app_login') }}">Sign In</a>
+    {% endif %}
+
+
+{% endblock %}

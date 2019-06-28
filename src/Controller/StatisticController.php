@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
-use App\Repository\ConferenceRepository;
+
 use App\Repository\RatingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +19,10 @@ class StatisticController extends AbstractController
      */
     public function index(RatingRepository $ratingRepository): Response
     {
-
+    dump($ratingRepository->getTopAverageUser());
         return $this->render('statistic/index.html.twig', [
-            'rates' => $ratingRepository->getAverageConference(),
+            'rates' => $ratingRepository->getTopAverageConference(),
+            'userRates' => $ratingRepository->getTopAverageUser(),
         ]);
     }
 }

@@ -22,7 +22,7 @@ App\Entity\User:
     created_at: <dateTimeBetween('-5 years','now', 'Europe/Paris')>
 
 App\Entity\Conference:
-  conference{1..40}:
+  conference{1..500}:
     title: <catchPhrase()>
     description: <bs()>
     img: 'conf<numberBetween(1, 7)>.jpg'
@@ -32,7 +32,7 @@ App\Entity\Conference:
 
 
 App\Entity\Rating:
-  rating_{1..500}:
+  rating_{1..10000}:
     conferenceId: '@conference<numberBetween(1, 30)>'
     userId: '@user<numberBetween(1, 250)>'
     rate: <numberBetween(1, 5)>

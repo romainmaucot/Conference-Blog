@@ -20,10 +20,8 @@
             <tr>
                 <td width="20%"><img src="images/{{ rate.conferenceId.img }}" width="100%"></td>
                 <td>{{ rate.conferenceId.title }}</td>
-                <td>{{ rate.conferenceId.eventDate ? rate.conferenceId.eventDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ rate .rate }}</td>
-
-
+                <td>{{ rate.conferenceId.eventDate ? rate.conferenceId.eventDate|date('Y/m/d H:i:s') : '' }}</td>
+                <td>{{ rate .rate }} / 5</td>
             </tr>
         {% endfor %}
         </tbody>

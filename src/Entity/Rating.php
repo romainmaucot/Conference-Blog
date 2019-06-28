@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RatingRepository")
  */
@@ -43,7 +44,7 @@ class Rating
         return $this->conferenceId;
     }
 
-    public function setConferenceId(?Conference $conferenceId): self
+    public function setConferenceId( $conferenceId): self
     {
         $this->conferenceId = $conferenceId;
 
@@ -55,7 +56,7 @@ class Rating
         return $this->userId;
     }
 
-    public function setUserId(?User $userId): self
+    public function setUserId( $userId): self
     {
         $this->userId = $userId;
 

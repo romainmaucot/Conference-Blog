@@ -17,6 +17,7 @@
             <th>Event date</th>
             <th>City</th>
             <th>Address</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
                 <td>{{ conference.eventDate ? conference.eventDate|date('m d Y H:i') : '' }}</td>
                 <td>{{ conference.city }}</td>
                 <td>{{ conference.address }}</td>
+                <td><a href="{{ path('conference_show_user', {'id': conference.id}) }}"><button>Show</button></a></td>
             </tr>
         {% else %}
             <tr>

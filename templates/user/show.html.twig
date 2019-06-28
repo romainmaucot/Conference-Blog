@@ -4,9 +4,15 @@
 
 {% block body %}
     <h1>User {{ user.firstname }}</h1>
+    {% if average  %}
     {% for av in average %}
-        <h3> Voted {{ av.1 }} times for an average of {{ (av.2 / av.1)|number_format(1) }} / 5</h3>
+        {% if av.2 is not null %}
+          <h3> Voted {{ av.1 }} times for an average of {{ (av.2 / av.1)|number_format(1) }} / 5</h3>
+        {% endif %}
     {% endfor %}
+    {% endif %}
+
+
 
     <a href="{{ path('user_index') }}"><button>back to list</button></a>
 

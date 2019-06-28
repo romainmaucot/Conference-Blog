@@ -4,33 +4,51 @@
 
 {% block body %}
     <h1>All statistic</h1>
-    <h2>Top 10 Best Conference</h2>
-
+    <h2 >Top 10 Best Conferences</h2>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Mail</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Created_at</th>
-                <th>actions</th>
+                <th></th>
+                <th>Tilte</th>
+                <th>Number of rating</th>
+                <th>Average</th>
             </tr>
         </thead>
         <tbody>
         {% for rate in rates %}
             <tr>
-                <td>{{ rate.id }}</td>
-                <td>{{ rate.rate }}</td>
+                <td width="10%"><img src="../../images/{{ rate.0.conferenceId.img }}" width="100%"></td>
+                <td>{{ rate.0.conferenceId.title }}</td>
+                <td>{{ rate.1 }}</td>
+                <td>{{ (rate.2 / rate.1)|number_format(1)}} / 5</td>
+
 
             </tr>
-        {% else %}
+        {% endfor %}
+        </tbody>
+    </table>
+    <h2>Top 10 Best Users</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Number of rating</th>
+            <th>Average</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for userRate in userRates %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td>{{ userRate.0.userId.firstname }}</td>
+                <td>{{ userRate.0.userId.lastname }}</td>
+                <td>{{ userRate.1 }}</td>
+                <td>{{ (userRate.2 / userRate.1)|number_format(1)}} / 5</td>
+
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
 {% endblock %}
